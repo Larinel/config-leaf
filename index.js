@@ -15,7 +15,6 @@ module.exports = function(fn) {
   from.pipe(fn).pipe(to);
   from.on("end", function () {
     console.log("done");
-    prompt.stop();
   });
 
 };

@@ -9,8 +9,6 @@ module.exports = function(fn) {
 
   var password = process.env['CONFIG_LEAF_PASSWORD'];
 
-  console.log(1,password,process.env);
-
   prompt.start();
 
   prompt.get([

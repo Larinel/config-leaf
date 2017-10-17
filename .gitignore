@@ -16,3 +16,6 @@ npm-debug.log
 node_modules
 config.copy.json
 config.json.cast5
+
+package-lock.json
+yarn.lock

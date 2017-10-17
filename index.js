@@ -7,8 +7,10 @@ module.exports = function(fn) {
   var from = path.join(process.cwd(), process.argv[2]);
   var to   = path.join(process.cwd(), process.argv[3]);
 
+  var password = process.env['CONFIG_LEAF_PASSWORD'];
+
   prompt.start();
-  
+
   prompt.get([
     {
       description: "Enter the config password (" + path.basename(to) + "):\n",
@@ -22,10 +24,11 @@ module.exports = function(fn) {
     if (err) {
       console.log(err);
     } else {
+      password = password || result.password;
       from = fs.createReadStream(from);
       to   = fs.createWriteStream(to);
-      fn   = fn("cast5-cbc", result.password);
-      
+      fn   = fn("cast5-cbc", password);
+
       from.pipe(fn).pipe(to);
       from.on("end", function () {
         console.log("done");
